@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "standard",
+    "dev": "nodemon server.js",
     "start": "echo APP_PORT=8080 > .env; node server.js"
   },
   "keywords": [],

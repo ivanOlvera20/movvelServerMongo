@@ -9,7 +9,10 @@ modCtrl.createMod = async (req, res) => {
         descripcion
     })
     await newMod.save()
-    res.json('new mod added')
+       res.status(201).json({
+         message: "nuevo modelo agregado!",
+         Modelo_Creado: newMod
+       });
 }
 
 //consultar todas las familias

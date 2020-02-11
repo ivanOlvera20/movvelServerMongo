@@ -11,12 +11,15 @@ matCtrl.create = async (req, res) => {
         especificacion
     })
     await newMat.save()
-    res.json('new mat_prima added')
+       res.status(201).json({
+         message: "nueva materia prima agregada!",
+         Linea_Creada: newMat
+       });
 }
 
 //consultar todas las familias
 matCtrl.getMany = async (req, res) => {
-    const mat = await Mat.find();
+    const mat = await Mat.find()
     res.json(mat);
 };
 

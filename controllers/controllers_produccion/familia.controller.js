@@ -9,7 +9,10 @@ famCtrl.createFam = async (req, res) => {
         descripcion
     })
     await newFam.save()
-    res.json('new fam added')
+       res.status(201).json({
+         message: "nueva familia add",
+         Familia_Creada: newFam
+       });
 }
 
 //consultar todas las familias
