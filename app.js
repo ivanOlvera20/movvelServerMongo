@@ -25,4 +25,5 @@ app.use('/api/modelo', require('./routes/modelo'))
 app.use('/api/mat_prima', require('./routes/mat_prima'))
 app.use('/api/vendedor', require('./routes/vendedor'))
 app.use("/api/linea", require("./routes/linea"));
+app.use("/api/producto", require("./routes/producto"));
 module.exports = app;

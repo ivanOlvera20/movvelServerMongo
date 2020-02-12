@@ -32,7 +32,7 @@ vendCtrl.deleteOne = async (req, res) => {
     res.json('Vendedor Deleted');
 }
 
-//actualizaer una familia
+//actualizaer una vendedor
 vendCtrl.update = async (req, res) => {
     const { clave, nombre, comision} = req.body;
     await Vend.findByIdAndUpdate(req.params.id, {
