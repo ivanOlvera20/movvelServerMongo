@@ -25,8 +25,11 @@ proCtrl.create = async (req, res) => {
 
 //consultar todas las Producto
 proCtrl.getMany = async (req, res) => {
-  const lin = await Producto.find().populate("familia", "descripcion");
-  res.json(lin);
+    const pro = await Producto.find()
+      .populate("familia", "descripcion")
+      .populate("linea", "descripcion")
+      .populate("modelo", "descripcion")
+  res.json(pro);
 };
 
 //consultar una sola linea por Id
