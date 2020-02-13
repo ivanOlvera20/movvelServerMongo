@@ -4,9 +4,8 @@ const Vend = require('../../models/cat_generales/vendedores')
 
 //crear un nuevo vendedor
 vendCtrl.create = async (req, res) => {
-    const { clave, nombre, comision } = req.body
+    const { nombre, comision } = req.body
     const newVend = new Vend({
-        clave,
         nombre,
         comision
     })
@@ -34,9 +33,8 @@ vendCtrl.deleteOne = async (req, res) => {
 
 //actualizaer una vendedor
 vendCtrl.update = async (req, res) => {
-    const { clave, nombre, comision} = req.body;
+    const {nombre, comision} = req.body;
     await Vend.findByIdAndUpdate(req.params.id, {
-        clave,
         nombre,
         comision
     });

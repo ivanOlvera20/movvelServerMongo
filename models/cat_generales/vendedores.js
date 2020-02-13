@@ -1,11 +1,9 @@
 const { Schema, model } = require("mongoose");
-const autoIncrement = require("mongoose-auto-increment");
-
+const { MongooseAutoIncrementID } = require("mongoose-auto-increment-reworked");
 
 const vendedoresSchema = new Schema(
   {
     id_cliente: Schema.Types.ObjectId,
-    clave: {type: String, required: true, unique:true},
     nombre: { type: String, required: true },
     comision: String
   },
@@ -14,14 +12,16 @@ const vendedoresSchema = new Schema(
   }
 );
 
-/* vendedoresSchema.plugin(autoIncrement.plugin, {
-  model: "vendedor",
+MongooseAutoIncrementID.initialise("counters");
+
+vendedoresSchema.plugin(MongooseAutoIncrementID.plugin, {
+  modelName: "vendedor",
   field: "clave",
-  startAt: "VD" + 1,
-  incrementBy: 1
-}); */
+  incrementBy: 1,
+  startAt: 10001,
+  unique: true,
+  nextCount: false,
+  resetCount: false
+});
 
 module.exports = model("vendedor", vendedoresSchema);
-
-
-
