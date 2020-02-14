@@ -4,8 +4,9 @@ const Modelo = require('../../models/cat_produccion/modelo')
 
 //crear una nueva familia
 modCtrl.createMod = async (req, res) => {
-    const { descripcion } = req.body
+    const { clave, descripcion } = req.body
     const newMod = new Modelo({
+        clave,
         descripcion
     })
     await newMod.save()
@@ -35,8 +36,9 @@ modCtrl.deleteMod = async (req, res) => {
 
 //actualizaer una familia
 modCtrl.updateMod = async (req, res) => {
-    const { descripcion } = req.body;
+    const { clave, descripcion } = req.body;
     await Modelo.findByIdAndUpdate(req.params.id, {
+        clave,
         descripcion
     });
     res.json('model Updated');
