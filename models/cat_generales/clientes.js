@@ -1,5 +1,5 @@
 const { Schema, model } = require("mongoose");
-const autoIncrement = require("mongoose-auto-increment");
+const { MongooseAutoIncrementID } = require("mongoose-auto-increment-reworked");
 
 const clientesSchema = new Schema(
   {
@@ -27,7 +27,7 @@ const clientesSchema = new Schema(
        }
     },
     datos_fiscales: {
-      rfc: { type: Number, max: 13 },
+      rfc: { type: Number},
       calle: String,
       colonia: String,
       codigo_postal: { type: String, max: 5 },
@@ -76,11 +76,16 @@ const clientesSchema = new Schema(
   }
 );
 
-module.exports = model("Clientes", modeloSchema);
+MongooseAutoIncrementID.initialise("counters");
 
-clientesSchema.plugin(autoIncrement.plugin, {
-  model: "Clientes",
+clientesSchema.plugin(MongooseAutoIncrementID.plugin, {
+  modelName: "cliente",
   field: "clave",
-  startAt: "CL" + 1,
-  incrementBy: 1
+  incrementBy: 1,
+  startAt: 10001,
+  unique: true,
+  nextCount: false,
+  resetCount: false
 });
+
+module.exports = model("cliente", clientesSchema);

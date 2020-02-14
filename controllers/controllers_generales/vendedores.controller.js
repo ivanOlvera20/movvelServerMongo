@@ -10,7 +10,10 @@ vendCtrl.create = async (req, res) => {
         comision
     })
     await newVend.save()
-    res.json('new vendedor added')
+    res.status(201).json({
+        message: "nuevo vendedor añadido",
+        vendedor_creado: newVend
+    });
 }
 
 //consultar todos los vendedores
