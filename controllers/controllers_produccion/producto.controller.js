@@ -4,9 +4,19 @@ const Producto = require("../../models/cat_produccion/producto");
 
 //crear una nueva Producto
 proCtrl.create = async (req, res) => {
-  const { codigo, descripcion, familia, linea, modelo, plz1, plz2, plz3, materiales_consumo } = req.body;
+  const {
+    clave,
+    descripcion,
+    familia,
+    linea,
+    modelo,
+    plz1,
+    plz2,
+    plz3,
+    materiales_consumo
+  } = req.body;
   const newPr = new Producto({
-    codigo,
+    clave,
     descripcion,
     familia,
     linea,
@@ -25,10 +35,10 @@ proCtrl.create = async (req, res) => {
 
 //consultar todas las Producto
 proCtrl.getMany = async (req, res) => {
-    const pro = await Producto.find()
-      .populate("familia", "descripcion")
-      .populate("linea", "descripcion")
-      .populate("modelo", "descripcion")
+  const pro = await Producto.find()
+    .populate("familia", "descripcion")
+    .populate("linea", "descripcion")
+    .populate("modelo", "descripcion");
   res.json(pro);
 };
 
@@ -44,12 +54,29 @@ proCtrl.deleteOne = async (req, res) => {
   res.json("Producto Deleted");
 };
 
-//actualizar una linea
+//actualizar un producto
 proCtrl.update = async (req, res) => {
-  const { descripcion, familia } = req.body;
-  await Producto.findByIdAndUpdate(req.params.id, {
+  const {
+    clave,
     descripcion,
-    familia
+    familia,
+    linea,
+    modelo,
+    plz1,
+    plz2,
+    plz3,
+    materiales_consumo
+  } = req.body;
+  await Producto.findByIdAndUpdate(req.params.id, {
+    clave,
+    descripcion,
+    familia,
+    linea,
+    modelo,
+    plz1,
+    plz2,
+    plz3,
+    materiales_consumo
   });
   res.json("Producto Updated");
 };

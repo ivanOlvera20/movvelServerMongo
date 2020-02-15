@@ -13,7 +13,7 @@ matCtrl.create = async (req, res) => {
     await newMat.save()
        res.status(201).json({
          message: "nueva materia prima agregada!",
-         Linea_Creada: newMat
+         mat_prima_creada: newMat
        });
 }
 
@@ -43,7 +43,10 @@ matCtrl.update = async (req, res) => {
         descripcion,
         especificacion
     });
-    res.json('Mat_prima Updated');
+    res.status(201).json({
+        message: "nueva materia prima actualizada!",
+        mat_prima_creada: newMat
+    });
 }
 
 module.exports = matCtrl
