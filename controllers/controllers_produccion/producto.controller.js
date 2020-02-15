@@ -44,8 +44,8 @@ proCtrl.getMany = async (req, res) => {
 
 //consultar una sola linea por Id
 proCtrl.getOne = async (req, res) => {
-  const lin = await Producto.findById(req.params.id);
-  res.json(lin);
+  const pro = await Producto.findById(req.params.id);
+  res.json(pro);
 };
 
 //borrar una linea
