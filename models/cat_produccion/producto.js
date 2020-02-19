@@ -7,7 +7,7 @@ const { appConfig } = require("../../config");
 const productoSchema = Schema(
   {
     id_producto: Schema.Types.ObjectId,
-    descripcion: {type: String, required: true, unique: true},
+    descripcion: String,
     familia: { type: Schema.ObjectId, ref: 'familia' },
     linea: { type: Schema.ObjectId, ref: 'linea' },
     modelo: { type: Schema.ObjectId, ref: 'modelo' },
