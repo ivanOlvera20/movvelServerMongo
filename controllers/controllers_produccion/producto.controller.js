@@ -26,12 +26,57 @@ proCtrl.create = async (req, res) => {
     plz3,
     materiales_consumo
   });
+
+  if (req.file) {
+    const { filename } = req.file
+    newPr.setImgUrl(filename)
+  }
+
   await newPr.save();
   res.status(201).json({
     message: "new line add",
     Producto_Creada: newPr
   });
-};
+};  
+
+/* async function addProduct(req, res) {
+  try {
+    const {
+      clave,
+      descripcion,
+      familia,
+      linea,
+      modelo,
+      plz1,
+      plz2,
+      plz3,
+      materiales_consumo
+    } = req.body
+
+    const product = Product({
+      clave,
+      descripcion,
+      familia,
+      linea,
+      modelo,
+      plz1,
+      plz2,
+      plz3,
+      materiales_consumo
+    })
+
+    if (req.file) {
+      const { filename } = req.file
+      product.setImgUrl(filename)
+    }
+
+    const productStored = await product.save()
+
+    res.status(201).send({ productStored })
+  } catch (e) {
+    res.status(500).send({ message: e.message })
+  }
+}  */
 
 //consultar todas las Producto
 proCtrl.getMany = async (req, res) => {

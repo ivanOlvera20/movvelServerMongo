@@ -1,4 +1,5 @@
 const { Router } = require('express');
+const upload = require('../libs/storage')
 const router = Router();
 
 const {
@@ -6,12 +7,13 @@ const {
   getMany,
   getOne,
   deleteOne,
-  update
+  update,
+
 } = require("../controllers/controllers_produccion/producto.controller");
 
 router
   .route("/")
-  .post(create)
+  .post(upload.single('image'), create)
   .get(getMany);
 
 router

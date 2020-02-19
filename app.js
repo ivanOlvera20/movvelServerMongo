@@ -2,7 +2,10 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require('cors')
 
+
 const app = express();
+
+app.use(cors())
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -15,18 +18,9 @@ app.use((req, res, next) => {
     next();
 }) 
 
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 
-/* app.use("/public", express.static(`${__dirname}/storage/imgs`));
-
-app.use("/api/products", require("./routes/product"));
-app.use("/api/users,", require("./routes/user"));
-
-app.use((err, req, res, next) => {
-  if (res.headersSent) return next(err);
-  res.status(400).json({ err: err });
-});
- */
+app.use('/public', express.static(`${__dirname}/storage/imgs`))
 
 app.use('/api/familia', require('./routes/familia'))
 app.use('/api/modelo', require('./routes/modelo'))
