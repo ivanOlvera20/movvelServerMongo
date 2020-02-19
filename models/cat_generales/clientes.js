@@ -5,7 +5,7 @@ const clientesSchema = new Schema(
   {
     id_cliente: Schema.Types.ObjectId,
     descripcion: { type: String, required: true },
-    vendedor: { type: Schema.ObjectId, ref: "Vendedores" },
+    vendedor: { type: Schema.ObjectId, ref: "vendedor" },
     datos_cliente: {
       nombre_comercial: String,
       contacto: String,
@@ -55,17 +55,11 @@ const clientesSchema = new Schema(
       ref_bancaria: Number,
       forma_pago: {
         type: String,
-        enum: [
-          "TDC",
-          "Efectivo",
-          "Cheque",
-          "Transferencia",
-          "Deposito Bancario"
-        ]
+
       },
       metodo_pago: {
         type: String,
-        enum: ["Pago en parcialidades o diferido", "Pago en una exhibición"]
+
       },
       plazo_credito: { type: String },
       limite_credito: { type: String }

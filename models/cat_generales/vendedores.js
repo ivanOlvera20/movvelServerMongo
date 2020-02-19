@@ -1,11 +1,18 @@
 const { Schema, model } = require("mongoose");
 const { MongooseAutoIncrementID } = require("mongoose-auto-increment-reworked");
 
+const root = "%"
+const clave ="VD-"
+
 const vendedoresSchema = new Schema(
   {
     id_cliente: Schema.Types.ObjectId,
+    clave: {type: Number, set: v => `${clave}${v}`},
     nombre: { type: String, required: true },
-    comision: String
+    comision: {
+      type: String,
+      set: v => `${v}${root}`
+    }
   },
   {
     timestamps: true

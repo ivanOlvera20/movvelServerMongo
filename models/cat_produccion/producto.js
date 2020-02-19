@@ -2,6 +2,7 @@ const { Schema, model } = require("mongoose");
 const { MongooseAutoIncrementID } = require("mongoose-auto-increment-reworked");
 /* const { appConfig } = require("../../config"); */
 
+const mxm = "$"
 
 const productoSchema = Schema(
   {
@@ -10,9 +11,9 @@ const productoSchema = Schema(
     familia: { type: Schema.ObjectId, ref: 'familia' },
     linea: { type: Schema.ObjectId, ref: 'linea' },
     modelo: { type: Schema.ObjectId, ref: 'modelo' },
-    plz1: Number,
-    plz2: Number,
-    plz3: Number,
+    plz1: {type: Number, set: v => `${mxm}${v}`},
+    plz2: { type: Number, set: v => `${mxm}${v}` },
+    plz3: { type: Number, set: v => `${mxm}${v}` },
     materiales_consumo: {type: Map, of: String}
   },
   {
@@ -24,6 +25,8 @@ const productoSchema = Schema(
   const { host, port } = appConfig;
   this.imgUrl = `${host}:${port}/public/${filename}`;
 }; */
+
+
 productoSchema.plugin(MongooseAutoIncrementID.plugin, {
   modelName: "producto",
   field: "clave",

@@ -18,7 +18,7 @@ clCtrl.create = async (req, res) => {
 //consultar todas las Producto
 clCtrl.getMany = async (req, res) => {
     const cl = await Cliente.find()
-        .populate("vendedor", ["nombre", "comision"])
+        .populate("vendedor", "nombre")
     res.json(cl);
 };
 
