@@ -2,7 +2,12 @@ const { Schema, model } = require("mongoose");
 const { MongooseAutoIncrementID } = require("mongoose-auto-increment-reworked");
 const { appConfig } = require("../../config"); 
 
-
+const material = Schema(
+  {
+    material: String,
+    magnitud: Number
+  }
+)
 
 const productoSchema = Schema(
   {
@@ -15,7 +20,7 @@ const productoSchema = Schema(
     plz2: Number,
     plz3: Number,
     imgUrl: String,
-    materiales_consumo: {type: Map, of: String}
+    materiales_consumo: [material]
   },
   {
     timestamps: true
