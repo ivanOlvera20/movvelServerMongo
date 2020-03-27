@@ -1,13 +1,12 @@
 const matCtrl = {}
 
-const Mat = require('../../models/cat_mp/mat_prim')
+const MatP = require('../../models/cat_mp/mat_prim')
 
 //crear una nueva Linea
 matCtrl.create = async (req, res) => {
-    const { descripcion, especificacion } = req.body
-    const newMat = new Mat({
-        descripcion,
-        especificacion
+    const { codigo, material, costo, magnitud, directa, unidad_medida } = req.body
+    const newMat = new MatP({
+        codigo, material, costo, magnitud, directa, unidad_medida
     })
     await newMat.save()
     res.status(201).json({
@@ -18,28 +17,29 @@ matCtrl.create = async (req, res) => {
 
 //consultar todas las lineas
 matCtrl.getMany = async (req, res) => {
-    const mat = await Mat.find()
+    const mat = await MatP.find()
+        .populate("material", "descripcion")
+        .populate("unidad_medida", "descripcion")
     res.json(mat);
 };
 
 //consultar una sola linea por Id
 matCtrl.getOne = async (req, res) => {
-    const mat = await Mat.findById(req.params.id);
+    const mat = await MatP.findById(req.params.id);
     res.json(mat);
 }
 
 //borrar una linea
 matCtrl.deleteOne = async (req, res) => {
-    await Mat.findByIdAndDelete(req.params.id)
+    await MatP.findByIdAndDelete(req.params.id)
     res.json('Mat_prima Deleted');
 }
 
 //actualizar una linea
 matCtrl.update = async (req, res) => {
-    const { descripcion, especificacion } = req.body;
-    await Mat.findByIdAndUpdate(req.params.id, {
-        descripcion,
-        especificacion
+    const { codigo, material, costo, magnitud, directa, unidad_medida } = req.body;
+    await MatP.findByIdAndUpdate(req.params.id, {
+        codigo, material, costo, magnitud, directa, unidad_medida, 
     });
     res.json('MAt_prima Updated');
 }

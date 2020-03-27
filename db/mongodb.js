@@ -8,5 +8,4 @@ const connectDb = async () => {
   );
   console.log("db connected with MongoDB Atlas");
 };
-
 module.exports = connectDb;

@@ -2,7 +2,7 @@ const { Schema, model } = require("mongoose");
 const { MongooseAutoIncrementID } = require("mongoose-auto-increment-reworked");
 const { appConfig } = require("../../config"); 
 
-const material = Schema(
+const consumos = Schema(
   {
     material: String,
     magnitud: Number
@@ -16,11 +16,11 @@ const productoSchema = Schema(
     familia: { type: Schema.ObjectId, ref: 'familia' },
     linea: { type: Schema.ObjectId, ref: 'linea' },
     modelo: { type: Schema.ObjectId, ref: 'modelo' },
-    plz1: Number,
-    plz2: Number,
-    plz3: Number,
-    imgUrl: String,
-    materiales_consumo: [material]
+    plz1: {Number},
+    plz2: {Number},
+    plz3: {Number},
+    imgUrl: {String},
+    consumo: [consumos]
   },
   {
     timestamps: true

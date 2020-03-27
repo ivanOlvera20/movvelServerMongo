@@ -3,9 +3,10 @@ const matCtrl = {}
 const Mat = require('../../models/cat_mp/mat_consumo')
 //crear una nueva Linea
 matCtrl.create = async (req, res) => {
-    const { descripcion, especificacion } = req.body
+    const { descripcion, codigo } = req.body
     const newMat = new Mat({
         descripcion,
+        codigo
     })
     await newMat.save()
     res.status(201).json({
@@ -34,9 +35,10 @@ matCtrl.deleteOne = async (req, res) => {
 
 //actualizar una linea
 matCtrl.update = async (req, res) => {
-    const { descripcion, especificacion } = req.body;
+    const { descripcion, codigo } = req.body;
     await Mat.findByIdAndUpdate(req.params.id, {
         descripcion,
+        codigo
 
     });
     res.json('Mat_consumo Updated');

@@ -13,7 +13,7 @@ proCtrl.create = async (req, res) => {
     plz1,
     plz2,
     plz3,
-    materiales_consumo
+   consumo
   } = req.body;
   const newPr = new Producto({
     clave,
@@ -24,7 +24,7 @@ proCtrl.create = async (req, res) => {
     plz1,
     plz2,
     plz3,
-    materiales_consumo
+    consumo
   });
 
   if (req.file) {
@@ -110,7 +110,7 @@ proCtrl.update = async (req, res) => {
     plz1,
     plz2,
     plz3,
-    materiales_consumo
+    consumo
   } = req.body;
   await Producto.findByIdAndUpdate(req.params.id, {
     clave,
@@ -121,7 +121,7 @@ proCtrl.update = async (req, res) => {
     plz1,
     plz2,
     plz3,
-    materiales_consumo
+    consumo
   });
   res.json("Producto Updated");
 };

@@ -30,5 +30,8 @@ app.use('/api/vendedor', require('./routes/vendedor'))
 app.use("/api/linea", require("./routes/linea"));
 app.use("/api/producto", require("./routes/producto"));
 app.use("/api/cliente", require("./routes/cliente"));
+app.use("/api/iden", require("./routes/identificador"));
+app.use("/api/banco", require("./routes/banco"));
+app.use("/api/cfdi", require("./routes/cfdi"));
 
 module.exports = app;

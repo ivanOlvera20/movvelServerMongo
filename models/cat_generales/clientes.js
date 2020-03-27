@@ -1,18 +1,32 @@
 const { Schema, model } = require("mongoose");
 const { MongooseAutoIncrementID } = require("mongoose-auto-increment-reworked");
 
+
+const dom_entrega = Schema(
+  {
+    calle: String,
+    colonia: String,
+    num_ext: Number,
+    num_int: Number,
+    estado: String,
+    municipio: String,
+  }
+)
+
+
 const clientesSchema = new Schema(
   {
     id_cliente: Schema.Types.ObjectId,
+    clave: String,
     descripcion: { type: String, required: true },
     vendedor: { type: Schema.ObjectId, ref: "vendedor" },
     datos_cliente: {
       nombre_comercial: String,
       contacto: String,
-      celular: { type: Number, max: 10 },
+      celular: { type: Number},
       telefono: Number,
       correo: String,
-      dom_entrega: { type: Map, of: String }
+      dom_entrega: [dom_entrega]
     },
     precio: { type: String, enum: ["plz1", "plz2", "plz3"] },
     tipo_cliente: { type: String, enum: ["Extranjero", "Foraneo", "Local"] },
@@ -21,22 +35,18 @@ const clientesSchema = new Schema(
       colonia: String,
       num_ext: Number,
       num_int: Number,
-      municipio: { 
-        estado: String,
-        municipio: String
-       }
+      estado: String,
+      municipio: String
     },
     datos_fiscales: {
       rfc: { type: Number},
       calle: String,
       colonia: String,
-      codigo_postal: { type: String, max: 5 },
+      codigo_postal: { type: String},
       num_ext: Number,
       num_int: Number,
-      municipio: { 
-        estado: String,
-        municipio: String
-      }
+      estado: String,
+      municipio: String,
     },
     datos_credito: {
       cfdi: String,
@@ -74,9 +84,9 @@ MongooseAutoIncrementID.initialise("counters");
 
 clientesSchema.plugin(MongooseAutoIncrementID.plugin, {
   modelName: "cliente",
-  field: "clave",
+  field: "Id",
   incrementBy: 1,
-  startAt: 10001,
+  startAt: 1,
   unique: true,
   nextCount: false,
   resetCount: false
